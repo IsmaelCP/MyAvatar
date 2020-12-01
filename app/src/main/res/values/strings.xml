@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">My Avatar</string>
+    <string name="txtTitulo">Avatar</string>
+    <string name="txtPulsar">Pulsa en el anillo y crea tu avatar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="editNombre">Nombre</string>
+    <string name="rb_hombre">HOMBRE</string>
+    <string name="rb_mujer">MUJER</string>
+
+    // Elementos del Spinner id spn_especie
+    <string-array name="especie">
+        <item>Elfo</item>
+        <item>Enano</item>
+        <item>Hobbit</item>
+        <item>Humano</item>
+    </string-array>
+
+    // Elementos del Spiner id spn_profesion
+    <string-array name="profesion">
+        <item>Arquero</item>
+        <item>Guerrero</item>
+        <item>Mago</item>
+        <item>Herrero</item>
+        <item>Minero</item>
+    </string-array>
+
+    // Fragment                                        !!!!!!! OJO !!!!!! ESTO NO HACE FALTA, REVISAR
+    <string name="txt_nombre_elegido"></string>
+    <string name="txt_poderes">PODERES</string>
+    <string name="txt_vida"></string>
+    <string name="txt_magia"></string>
+    <string name="txt_fuerza"></string>
+    <string name="txt_velocidad"></string>
+
+    // Imágenes
+    <string name="img_elfa">Elfa</string>
+    <string name="img_elfo">Elfo</string>
+    <string name="img_enana">Enana</string>
+    <string name="img_enano">Enano</string>
+    <string name="img_hobbit_hombre">Hobbit</string>
+    <string name="img_hobbit_mujer">Hobbit</string>
+    <string name="img_humana">Human</string>
+    <string name="img_humano">Humano</string>
+    <string name="img_arquero">Arquero</string>
+    <string name="img_guerrero">Guerrero</string>
+    <string name="img_mago">Mago</string>
+    <string name="img_herrero">Herrero</string>
+    <string name="img_minero">Minero</string>
+
+</resources>
