@@ -1,9 +1,12 @@
 package es.studium.myavatar;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.RadioButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,100 +19,60 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class DialogoProfesion extends DialogFragment
 {
-    // Creamos los objetos de las Clases de los diálogos
     OnDialogoListener mListener;
-    MainActivity mainActivity;
-    // Variable para recoger la especie elegida
-    String profesionClicada = "";
-    String profesionElegida;
-    FragmentManager fm;
-    Fragment fragment;
-    FragmentTransaction ft;
-    private Avatar avatar;
-    public DialogoProfesion(Avatar avatar)
-    {
-        this.avatar = avatar;
-    }
-    @NonNull
+    RadioButton arquero;
+    RadioButton guerrero;
+    RadioButton mago;
+    RadioButton herrero;
+    RadioButton minero;
     @Override
     public Dialog onCreateDialog(@Nullable Bundle saveInstanceState)
     {
         // Construir el diálogo
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.dialogo_profesion, null));
-
-        final String[] profesion = getResources().getStringArray(R.array.profesion);
-
-        // Obtener el Fragment
-        fm = getActivity().getSupportFragmentManager();
-
-        builder.setTitle("Para terminar, escoge una profesión")
-                // Añadir la lista de especies
-                .setSingleChoiceItems(profesion, -1, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int i) {
-                        profesionClicada = profesion[i];
-                    }
-                })
+        View MyView = inflater.inflate(R.layout.dialogo_profesion, null);
+        arquero = MyView.findViewById(R.id.rb_arquero);
+        guerrero = MyView.findViewById(R.id.rb_guerrero);
+        mago = MyView.findViewById(R.id.rb_mago);
+        herrero = MyView.findViewById(R.id.rb_herrero);
+        minero = MyView.findViewById(R.id.rb_minero);
+        builder.setView(MyView)
+                .setTitle("Para terminar, escoge una profesión")
                 // Añadir el botón Aceptar
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i)
                     {
-
                         // Capturar la elección de la profesión
-                        String arquero = "Arquero";
-                        String guerrero = "Guerrero";
-                        String mago = "Mago";
-                        String herrero = "Herrero";
-                        String minero = "Minero";
-                        // Capturar la elección del género
-                        if(profesion[1] == arquero)
+                        if(arquero.isChecked())
                         {
-                            profesionElegida = arquero;
+                            mListener.onDataSetProfesion("arquero");
+                            mListener.random();
+                            dialog.dismiss();
                         }
-                        else if (profesion[1] == guerrero)
+                        else if (guerrero.isChecked())
                         {
-                            profesionElegida = guerrero;
+                            mListener.onDataSetProfesion("guerrero");
+                            mListener.random();
+                            dialog.dismiss();
                         }
-                        else if (profesion[1] == mago)
+                        else if (mago.isChecked())
                         {
-                            profesionElegida = mago;
+                            mListener.onDataSetProfesion("mago");
+                            mListener.random();
+                            dialog.dismiss();
                         }
-                        else if (profesion[1] == herrero)
+                        else if (herrero.isChecked())
                         {
-                            profesionElegida = herrero;
+                            mListener.onDataSetProfesion("herrero");
+                            mListener.random();
+                            dialog.dismiss();
                         }
-
-                        avatar.setProfesion(profesionElegida);
-                        fragment = fm.findFragmentByTag("fragment");
-                        if(null == fragment)
-                        {
-                            //BlankFragment blankFragment = new BlankFragment();
-                            Bundle bundle = new Bundle();
-                            // Datos a enviar
-                            //bundle.putString("nombre", "Pepe");
-
-                            //bundle.putString(mainActivity.onDataSetNombre().toString());
-                            // Preparar el fragmento
-                            Fragment fragmento = new BlankFragment();
-                            // Argumentos
-                            fragmento.setArguments(bundle);
-                            fm = getActivity().getSupportFragmentManager();
-                            FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                           fragmentTransaction.replace(R.id.contenedorFragmento, fragmento);
-                            fragmentTransaction.addToBackStack(null);
-                            // Terminar transición
-                            fragmentTransaction.commit();
-                            /*
-                            ft = fm.beginTransaction();
-                            ft.replace(R.id.contenedorFragmento, blankFragment, "fragment");
-                            ft.commit();
-                            */
+                        else{
+                            mListener.onDataSetProfesion("minero");
+                            mListener.random();
                         }
-
                         // Cerrar el diálogo
                         dialog.dismiss();
                     }
@@ -124,5 +87,22 @@ public class DialogoProfesion extends DialogFragment
                 });
         // Crear el objeto y devolverlo
         return builder.create();
+    }
+
+    @Override
+    public void onAttach(Context context)
+    {
+        super.onAttach(context);
+        // Verificamos que la actividad principal ha implementado el interfaz
+        try
+        {
+            // Instanciamos OnDialogoAceptarListener para poder enviar eventos a la clase principal
+            mListener = (OnDialogoListener) context;
+        }
+        catch (ClassCastException e)
+        {
+            // La actividad no implementa el interfaz
+            throw new ClassCastException(context.toString() + " debe implementar OnDialogoListener");
+        }
     }
 }

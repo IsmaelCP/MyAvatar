@@ -1,22 +1,47 @@
 <resources>
+    // Activity
     <string name="app_name">My Avatar</string>
     <string name="txtTitulo">Avatar</string>
     <string name="txtPulsar">Pulsa en el anillo y crea tu avatar</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="editNombre">Nombre</string>
+    <string name="img_avatar">Imagen Avatar</string>
+    <string name="img_profesion">Imagen Profesión</string>
+    <string name="txt_vida">Vida</string>
+    <string name="txt_magia">Magia</string>
+    <string name="txt_fuerza">Fuerza</string>
+    <string name="txt_velocidad">Velocidad</string>
+    <string name="txt_nombre_elegido">Nombre elegido</string>
+    <string name="btn_cerrar">Cerrar app</string>
+
+    // Elementos del RadioButton Sexo
+    <string name="rg_sexo">Sexo</string>
     <string name="rb_hombre">HOMBRE</string>
     <string name="rb_mujer">MUJER</string>
-
-    // Elementos del Spinner id spn_especie
-    <string-array name="especie">
-        <item>Elfo</item>
-        <item>Enano</item>
-        <item>Hobbit</item>
-        <item>Humano</item>
+    <string-array name="sexo">
+        <item>@string/rb_hombre</item>
+        <item>@string/rb_mujer</item>
     </string-array>
 
-    // Elementos del Spiner id spn_profesion
+    // Elementos del RadioButton Especie
+    <string name="rg_especie">Especie</string>
+    <string name="rb_elfo">ELFO</string>
+    <string name="rb_enano">ENANO</string>
+    <string name="rb_hobbit">HOBBIT</string>
+    <string name="rb_humano">HUMANO</string>
+    <string-array name="especie">
+        <item>@string/rb_elfo</item>
+        <item>@string/rb_enano</item>
+        <item>@string/rb_hobbit</item>
+        <item>@string/rb_humano</item>
+    </string-array>
+
+    // Elementos del RadioButton Profesion
+    <string name="rg_profesion">Profesión</string>
+    <string name="rb_arquero">ARQUERO</string>
+    <string name="rb_guerrero">GUERRERO</string>
+    <string name="rb_mago">MAGO</string>
+    <string name="rb_herrero">HERRERO</string>
+    <string name="rb_minero">MINERO</string>
     <string-array name="profesion">
         <item>Arquero</item>
         <item>Guerrero</item>
@@ -24,14 +49,6 @@
         <item>Herrero</item>
         <item>Minero</item>
     </string-array>
-
-    // Fragment                                        !!!!!!! OJO !!!!!! ESTO NO HACE FALTA, REVISAR
-    <string name="txt_nombre_elegido"></string>
-    <string name="txt_poderes">PODERES</string>
-    <string name="txt_vida"></string>
-    <string name="txt_magia"></string>
-    <string name="txt_fuerza"></string>
-    <string name="txt_velocidad"></string>
 
     // Imágenes
     <string name="img_elfa">Elfa</string>

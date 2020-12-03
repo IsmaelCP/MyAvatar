@@ -1,11 +1,13 @@
 package es.studium.myavatar;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -17,73 +19,51 @@ import androidx.fragment.app.DialogFragment;
 
 public class DialogoEspecie extends DialogFragment
 {
-    // Creamos los objetos de las Clases de los diálogos
-    DialogoProfesion dialogoProfesion;
-    OnDialogoListener mListenerEspecie;
-    // Variable para recoger la especie elegida
-    String especieClicada = "";
-    String especieElegida;
-    private Avatar avatar;
-    public DialogoEspecie(Avatar avatar)
-    {
-        this.avatar = avatar;
-    }
-
-    @NonNull
+    OnDialogoListener mListener;
+    RadioButton elfo;
+    RadioButton enano;
+    RadioButton hobbit;
+    RadioButton humano;
     @Override
     public Dialog onCreateDialog(@Nullable Bundle saveInstanceState) {
         // Construir el diálogo
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        //builder.setView(inflater.inflate(R.layout.dialogo_especie, null));
-
-        View myView = inflater.inflate(R.layout.dialogo_especie, null);
-
-        final String[] especie = getResources().getStringArray(R.array.especie);
-
-        builder.setView(myView)
+        View MyView = inflater.inflate(R.layout.dialogo_especie, null);
+        elfo = MyView.findViewById(R.id.rb_elfo);
+        enano = MyView.findViewById(R.id.rb_enano);
+        hobbit = MyView.findViewById(R.id.rb_hobbit);
+        humano = MyView.findViewById(R.id.rb_humano);
+        builder.setView(MyView)
                 .setTitle("Ahora una especie")
-                // Añadir la lista de especies
-                .setSingleChoiceItems(especie, -1, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int i) {
-                        especieClicada = especie[i];
-                    }
-                })
                 // Añadir el botón Aceptar
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int i)
-                    {
-
+                    public void onClick(DialogInterface dialog, int which) {
                         // Capturar la elección de la especie
-                        String elfo = "Elfo";
-                        String enano = "Enano";
-                        String hobbit = "Hobbit";
-                        String humano = "Humano";
-                        // Capturar la elección del género
-                        if(especie[1] == elfo)
+                        if(elfo.isChecked())
                         {
-                            avatar.setEspecie(elfo);
+                            mListener.onDataSetEspecie("elfo");
+                            mListener.abrirDialogoProfesion();
+                            dialog.dismiss();
                         }
-                        else if (especie[1] == enano)
+                        else if(enano.isChecked())
                         {
-                            especieElegida = enano;
+                            mListener.onDataSetEspecie("enano");
+                            mListener.abrirDialogoProfesion();
+                            dialog.dismiss();
                         }
-                        else if (especie[1] == hobbit)
+                        else if(hobbit.isChecked())
                         {
-                            especieElegida = hobbit;
+                            mListener.onDataSetEspecie("hobbit");
+                            mListener.abrirDialogoProfesion();
+                            dialog.dismiss();
                         }
-                        else if (especie[1] == humano)
-                        {
-                            especieElegida = humano;
+                        else{
+                            mListener.onDataSetEspecie("humano");
+                            mListener.abrirDialogoProfesion();
                         }
-
-                        avatar.setEspecie(especieElegida);
-                        dialogoProfesion = new DialogoProfesion(avatar);
-                        dialogoProfesion.setCancelable(false);
-                        dialogoProfesion.show(getFragmentManager(), "Para terminar, escoge una profesión");
+                        // Cerrar el diálogo
                         dialog.dismiss();
                     }
                 })
@@ -97,5 +77,22 @@ public class DialogoEspecie extends DialogFragment
                 });
         // Crear el objeto y devolverlo
         return builder.create();
+    }
+
+    @Override
+    public void onAttach(Context context)
+    {
+        super.onAttach(context);
+        // Verificamos que la actividad principal ha implementado el interfaz
+        try
+        {
+            // Instanciamos OnDialogoAceptarListener para poder enviar eventos a la clase principal
+            mListener = (OnDialogoListener) context;
+        }
+        catch (ClassCastException e)
+        {
+            // La actividad no implementa el interfaz
+            throw new ClassCastException(context.toString() + " debe implementar OnDialogoListener");
+        }
     }
 }

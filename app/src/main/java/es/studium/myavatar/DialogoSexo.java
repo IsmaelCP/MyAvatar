@@ -1,6 +1,7 @@
 package es.studium.myavatar;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,59 +18,33 @@ import androidx.fragment.app.DialogFragment;
 
 public class DialogoSexo extends DialogFragment
 {
-    // Creamos los objetos de las Clases de los diálogos
-    DialogoEspecie dialogoEspecie;
     OnDialogoListener mListener;
-    String generoElegido;
-    // Views
-    RadioGroup rg_sexo;
-    RadioButton rb_hombre;
-    RadioButton rb_mujer;
-    private Avatar avatar;
-    public DialogoSexo(Avatar avatar)
-    {
-        this.avatar = avatar;
-    }
-
-
-    @NonNull
+    RadioButton hombre;
+    RadioButton mujer;
     @Override
     public Dialog onCreateDialog(@Nullable Bundle saveInstanceState)
     {
-        // Creamos los objetos de las Clases de los diálogos
-        OnDialogoListener mListenerSexo;
-
         // Construir el diálogo
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View myView = inflater.inflate(R.layout.dialogo_sexo, null);
-        rb_hombre = myView.findViewById(R.id.rb_hombre);
-        rb_mujer = myView.findViewById(R.id.rb_mujer);
-        builder.setView(myView)
+        View MyView = inflater.inflate(R.layout.dialogo_sexo, null);
+        hombre = MyView.findViewById(R.id.rb_hombre);
+        mujer = MyView.findViewById(R.id.rb_mujer);
+        builder.setView(MyView)
                 .setTitle("Elige un sexo")
                 // Añadir el botón Aceptar
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which)
-                    {
-
-                        // Capturar la elección del género
-
-                        if(rb_hombre.isChecked())
-                        {
-                            generoElegido = "hombre";
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Capturar la elección del sexo
+                        if (hombre.isChecked()) {
+                            mListener.onDataSetSexo("H");
+                            mListener.abrirDialogoEspecie();
                         }
-                        else
-                        {
-                            generoElegido = "mujer";
+                        else {
+                            mListener.onDataSetSexo("M");
+                            mListener.abrirDialogoEspecie();
                         }
-                        // mListener.onDataSetNombre(String.valueOf(generoElegido.shortValue()));
-
-                        avatar.setSexo(generoElegido);
-                        dialogoEspecie = new DialogoEspecie(avatar);
-                        dialogoEspecie.setCancelable(false);
-                        dialogoEspecie.show(getFragmentManager(), "ESPECIE");
                         dialog.dismiss();
                     }
                 })
@@ -83,5 +58,22 @@ public class DialogoSexo extends DialogFragment
                 });
         // Crear el objeto y devolverlo
         return builder.create();
+    }
+
+    @Override
+    public void onAttach(Context context)
+    {
+        super.onAttach(context);
+        // Verificamos que la actividad principal ha implementado el interfaz
+        try
+        {
+            // Instanciamos OnDialogoAceptarListener para poder enviar eventos a la clase principal
+            mListener = (OnDialogoListener) context;
+        }
+        catch (ClassCastException e)
+        {
+            // La actividad no implementa el interfaz
+            throw new ClassCastException(context.toString() + " debe implementar OnDialogoListener");
+        }
     }
 }

@@ -2,20 +2,24 @@ package es.studium.myavatar;
 
 public interface OnDialogoListener
 {
-    // DiálogoNombre
-    public void onDialogoAceptarListenerNombre();
-    public void onDialogoCancelarListener();
-    public void onDataSetNombre(String nombre);
+    // Abrir los Diálogos
+    public void abrirDialogoSexo();
+    public void abrirDialogoEspecie();
+    public void abrirDialogoProfesion();
 
     // DialogoSexo
-    public void onDataSetSexo(Integer sexo);
+    public void onDataSetSexo(String sexo);
+
+    // DiálogoNombre
+    public void onDataSetNombre(String nombre);
 
     // DialogoEspecie
-
+    public void onDataSetEspecie(String especie);
 
     // DialogoProfesion
+    public void onDataSetProfesion(String profesion);
 
-
-
+    // Random para obtener los poderes de forma aleatoria
+    public void random();
 
 }
