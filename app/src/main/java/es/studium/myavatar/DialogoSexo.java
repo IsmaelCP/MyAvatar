@@ -31,7 +31,7 @@ public class DialogoSexo extends DialogFragment
         hombre = MyView.findViewById(R.id.rb_hombre);
         mujer = MyView.findViewById(R.id.rb_mujer);
         builder.setView(MyView)
-                .setTitle("Elige un sexo")
+                .setTitle("Elige tu género")
                 // Añadir el botón Aceptar
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override

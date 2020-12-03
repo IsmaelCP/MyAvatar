@@ -8,6 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="fondo">#BC8FC5</color>
-    <color name="fabtn_Salir">#FF837F7F</color>
     <color name="textos">#2A223E</color>
+    <color name="btn_cerrar">#C6C4CA</color>
 </resources>

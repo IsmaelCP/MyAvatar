@@ -131,11 +131,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if(sexoElegido.equals("M"))
         {
-            if(especie.equals("elfa"))
+            if(especie.equals("elfo"))
             {
                 imgAvatar.setImageResource(R.drawable.elfa);
             }
-            else if(especie.equals("enana"))
+            else if(especie.equals("enano"))
             {
                 imgAvatar.setImageResource(R.drawable.enana);
             }

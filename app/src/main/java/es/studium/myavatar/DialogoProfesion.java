@@ -38,7 +38,7 @@ public class DialogoProfesion extends DialogFragment
         herrero = MyView.findViewById(R.id.rb_herrero);
         minero = MyView.findViewById(R.id.rb_minero);
         builder.setView(MyView)
-                .setTitle("Para terminar, escoge una profesión")
+                .setTitle("Para terminar escoge una profesión")
                 // Añadir el botón Aceptar
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override

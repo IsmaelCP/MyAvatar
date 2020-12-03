@@ -24,10 +24,10 @@
 
     // Elementos del RadioButton Especie
     <string name="rg_especie">Especie</string>
-    <string name="rb_elfo">ELFO</string>
-    <string name="rb_enano">ENANO</string>
+    <string name="rb_elfo">ELF@</string>
+    <string name="rb_enano">ENAN@"</string>
     <string name="rb_hobbit">HOBBIT</string>
-    <string name="rb_humano">HUMANO</string>
+    <string name="rb_humano">HUMAN@</string>
     <string-array name="especie">
         <item>@string/rb_elfo</item>
         <item>@string/rb_enano</item>
@@ -37,11 +37,11 @@
 
     // Elementos del RadioButton Profesion
     <string name="rg_profesion">Profesión</string>
-    <string name="rb_arquero">ARQUERO</string>
-    <string name="rb_guerrero">GUERRERO</string>
-    <string name="rb_mago">MAGO</string>
-    <string name="rb_herrero">HERRERO</string>
-    <string name="rb_minero">MINERO</string>
+    <string name="rb_arquero">ARQUER@</string>
+    <string name="rb_guerrero">GUERRER@</string>
+    <string name="rb_mago">MAG@</string>
+    <string name="rb_herrero">HERRER@</string>
+    <string name="rb_minero">MINER@</string>
     <string-array name="profesion">
         <item>Arquero</item>
         <item>Guerrero</item>
